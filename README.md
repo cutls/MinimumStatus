@@ -1,6 +1,6 @@
 # MinimumStatus
 
-Minimum Status Page without DB
+Legacy PHP Non-DB Status Page
 
 ## What's this
 

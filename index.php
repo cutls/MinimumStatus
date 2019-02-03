@@ -92,6 +92,6 @@ if($status=="OK"){
 </ul>
 <? endif ?>
 &copy; <?php echo $config["copy"] ?> 2019<br>
-<b>Minimal Status</b>:<i>Legacy PHP Non-DB Status Page</i>(Ready for open-source, plaese wait.)<br>
+<b>Minimal Status</b>:<i>Legacy PHP Non-DB Status Page</i>(<a href="https://github.com/cutls/MinimumStatus" target="_blank">GitHub</a>)<br>
 &copy; <a href="https://kirishima.cloud/@Cutls" target="_blank">Cutls P</a>
 </div>
