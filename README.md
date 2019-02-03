@@ -17,11 +17,7 @@ This icons are OGP icon images.
 ## Usage
   
 * `git clone https://github.com/cutls/MinimumStatus.git`
-* fill configs of MinimumStatus
+* rename `config.sample.php` to `config.php` and `db.sample.php` to `db.php` and fill configs of MinimumStatus
 * upload `ndstatus.json` to root of your website
-* set your server config
 * set cron job to run `bot.php`
-
-## Config
-
-Rename `config.sample.php` and `db.sample.php`
+* set your server config
