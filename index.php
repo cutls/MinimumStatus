@@ -33,16 +33,28 @@ body{
 <h4>Website statuses</h4>
 <ul class="collection">
 <?php foreach($websites as $website): 
-require_once('OpenGraph.php');  
 //URLを指定  
-$graph = OpenGraph::fetch($website["domain"]);
-$image=$graph->image;
 $domain=$website["domain"];
-$data=json_decode(file_get_contents($domain.'.json'));
+$image=$website["image"];
+if(file_exists($domain.'.json')){
+    $data=json_decode(file_get_contents($domain.'.json'));
+}else{
+
+}
 $totalup=$data->success;
 $total=$data->total;
 $todayup=$data->$todaysucess;
+if($total===0 || !$total){
+    $pertotal="0";
+}else{
+    $pertotal=round($totalup/$total*100,2);
+}
 $today=$data->$todaytotal;
+if($today===0 || !$today){
+    $pertoday="0";
+}else{
+    $pertoday=round($todayup/$today*100,2);
+}
 $status=$data->status;
 if($status=="OK"){
 	$info="Operating";
@@ -54,9 +66,9 @@ if($status=="OK"){
 ?>
 <li class="collection-item avatar">
     <img src="<?php echo $image?>" alt="" class="circle">
-    <span class="title"><?php echo $website["name"] ?></span><img src="https://status.cutls.com/badge/?site=<?php echo $website["domain"] ?>" class="secondary-content">
-    <p><span class="<?php echo $color ?>-text"><?php echo $info ?></span><br>Total:<?php echo $totalup?>/<?php echo $total?>(<?php echo round($totalup/$total*100,2)?>%)<br>
-    Today:<?php echo $todayup?>/<?php echo $today?>(<?php echo round($todayup/$today*100,2)?>%)<br>
+    <span class="title"><?php echo $website["name"] ?></span><img src="./badge/?site=<?php echo $website["domain"] ?>" class="secondary-content">
+    <p><span class="<?php echo $color ?>-text"><?php echo $info ?></span><br>Total:<?php echo $totalup; ?>/<?php echo $total; ?>(<?php echo $pertotal ?>%)<br>
+    Today:<?php echo $todayup?>/<?php echo $today?>(<?php echo $pertoday ?>%)<br>
     </p>
 </li>
 <?php endforeach; ?>
@@ -83,9 +95,9 @@ if($status=="OK"){
 }
 ?>
 <li class="collection-item">
-    <span class="title"><?php echo $name ?></span><img src="https://status.cutls.com/badge/?site=<?php echo $name ?>" class="secondary-content">
-    <p><span class="<?php echo $color ?>-text"><?php echo $info ?></span><br>Total:<?php echo $totalup?>/<?php echo $total?>(<?php echo round($totalup/$total*100,2)?>%)<br>
-    Today:<?php echo $todayup?>/<?php echo $today?>(<?php echo round($todayup/$today*100,2)?>%)<br>
+    <span class="title"><?php echo $name ?></span><img src=".badge/?site=<?php echo $name ?>" class="secondary-content">
+    <p><span class="<?php echo $color ?>-text"><?php echo $info ?></span><br>Total:<?php echo $totalup?>/<?php echo $total?>(<?php echo $pertotal ?>%)<br>
+    Today:<?php echo $todayup?>/<?php echo $today?>(<?php echo $pertoday; ?>%)<br>
     </p>
 </li>
 <?php endforeach; ?>
@@ -93,5 +105,5 @@ if($status=="OK"){
 <? endif ?>
 &copy; <?php echo $config["copy"] ?> 2019<br>
 <b>Minimal Status</b>:<i>Legacy PHP Non-DB Status Page</i>(<a href="https://github.com/cutls/MinimumStatus" target="_blank">GitHub</a>)<br>
-&copy; <a href="https://kirishima.cloud/@Cutls" target="_blank">Cutls P</a>
+&copy; <a href="https://cutls.com/@Cutls" target="_blank">Cutls P</a>
 </div>

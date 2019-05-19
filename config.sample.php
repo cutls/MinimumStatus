@@ -5,6 +5,7 @@ $config=[
     "description"=>"Description and notice of your status page",
     "copy"=>"Your name",
     "website"=>[
-        ["domain"=>"example.com","name"=>"Example Name","https"=>true]
+        ["domain"=>"example1.com","name"=>"Example Name1","https"=>true,"image"=>"Site favicon url1"],
+        ["domain"=>"example2.com","name"=>"Example Name2","https"=>true,"image"=>"Site favicon url2"]
     ]
 ];
