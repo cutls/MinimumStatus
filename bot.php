@@ -18,6 +18,7 @@
         }else{
             $https="";
         }
+        echo "http".$https."://".$domain."/ndstatus.json";
         $checkjson=file_get_contents("http".$https."://".$domain."/ndstatus.json");
         if($data->$todaytotal){
             $data->$todaytotal=$data->$todaytotal+1;
