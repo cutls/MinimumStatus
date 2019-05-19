@@ -37,9 +37,11 @@
         if($status=="OK"){
         	$data->status="OK";
         }else{
-            $webhook=$site["if_error"];
-            if($webhook && $webhook!="" && $webhook!="Webhook URL"){
-                file_get_contents($webhook."?site=".$domain);
+            if($data->status!="error"){
+                $webhook=$site["if_error"];
+                if($webhook && $webhook!="" && $webhook!="Webhook URL"){
+                    file_get_contents($webhook."?site=".$domain);
+                }
             }
         	$data->status="error";
         }
