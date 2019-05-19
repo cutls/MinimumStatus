@@ -37,6 +37,10 @@
         if($status=="OK"){
         	$data->status="OK";
         }else{
+            $webhook=$site["if_error"];
+            if($webhook && $webhook!="" && $webhook!="Webhook URL"){
+                file_get_contents($webhook."?site=".$domain);
+            }
         	$data->status="error";
         }
         $data->total=$data->total+1;

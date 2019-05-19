@@ -13,10 +13,11 @@ $config=[
     "description"=>"タイトルの下に説明文を入力できます。スクリーンショットでは使っていません。空白でもOKです。",
     "copy"=>"コピーライトのところに入れる名前です。サイトの一番下で利用できます。",
     "website"=>[
-        ["domain"=>"example1.com","name"=>"サイトの名前","https"=>true,"image"=>"https:// アイコン画像のURL .png"],
-        ["domain"=>"example2.com","name"=>"サイトの名前","https"=>true,"image"=>"https:// アイコン画像のURL .png"],
+        ["domain"=>"example1.com","name"=>"サイトの名前","https"=>true,"image"=>"https:// アイコン画像のURL .png","if_error"=>"Webhook URL"],
+        ["domain"=>"example2.com","name"=>"サイトの名前","https"=>true,"image"=>"https:// アイコン画像のURL .png","if_error"=>"Webhook URL"],
         //以下サイトの数だけ繰り返します。httpsはSSL/TLSに対応していればtrueを、そうでなければfalseを指定してください。
         //アイコン画像のURLはhttpから始めてください。このステータスページをhttpsにした場合、アイコンもhttpsから始める必要があります。無い場合は空白でも構いません。
+        //Webhook URLはわかる方のみ入れてください。分からない方は空欄にしてください。
     ]  
 ];  
 ```
@@ -63,3 +64,11 @@ rootで、
   
 Mastodon以外の場合でも、Nginxを使っているなら`server{}`内のよさげなところに上のMastodonでの例のように`location /ndstatus.json`と書いてやればOKです。  
 Apacheやその他Webサーバーでは全く設定が異なります。
+
+## 毎日のログを見る
+
+`<ステータスページ>.com(例)/<ログを見たいサイト.com>.json`を開きます。  
+コピーして、JSONを整形します。([JSON整形](https://tools.m-bsys.com/development_tooles/json-beautifier.php))。  
+各行の6桁の数字_totalが6桁の数字が表す日の合計数で、  
+各行の6桁の数字_successが6桁の数字が表す日のアクセス成功数で、  
+6桁の数字はyymmddつまり190520=2019年5月20日です。

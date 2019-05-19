@@ -24,6 +24,12 @@ This icons are OGP icon images.
 * set cron job to run `bot.php` or renamed file
 * set your server config
 
+## Webhook when error
+
+You can get notice when your sites has something wrong.  
+`if_error` at config will be accessed when error ** with `?site=<domain>`.  
+So, fill `if_error` `https://thedesk.top/notice`, this will access like `https://thedesk.top/notice?site=cutls.com`.
+
 ## Make the badge of your website status!
 
 Like [![check](https://status.cutls.com/badge/?site=thedesk.top)](https://status.cutls.com) 
