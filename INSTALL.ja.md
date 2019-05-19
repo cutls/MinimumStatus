@@ -72,3 +72,7 @@ Apacheやその他Webサーバーでは全く設定が異なります。
 各行の6桁の数字_totalが6桁の数字が表す日の合計数で、  
 各行の6桁の数字_successが6桁の数字が表す日のアクセス成功数で、  
 6桁の数字はyymmddつまり190520=2019年5月20日です。
+
+## Webhook
+エラーなときに指定されたURLにアクセスを飛ばします。  
+cutls.comの`if_error`に`https://thedesk.top/notice`と書くと、エラーになった時に**初回の一度だけ**`https://thedesk.top/notice?site=cutls.com`にアクセスされます。再復活し、その後またエラーとなるまで再送されません。  
