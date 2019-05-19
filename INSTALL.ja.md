@@ -30,6 +30,9 @@ MastodonなどNginxのconfをいじらないと対処できない場合は後述
 1. ドメインの設定等をします。例えば、`https://status.example.com`でアクセスできるように指定します。SSL/TLSの設定なども行っておきます。
 1. cronの設定をします。cronは一定時間ごとにコマンドを実行する機能です。レンタルサーバーの場合、コントロールパネルから設定します。  
 レンタルサーバープランによっては使えなかったり、1分ごとの設定ができなかったりします。別に何分ごとに設定しても構いませんが、短いに越したことはありません。  
+さくらのレンタルサーバーの設定例  
+![screenshot](https://raw.githubusercontent.com/cutls/MinimumStatus/master/sakura.png)  
+  
 **cronが使えない場合**  
 [Google Cloud Schedular](https://cloud.google.com/scheduler/)を使用します。無料でそこそこの信頼性があります。  
 コンソールから「ジョブの作成」をします。  
@@ -41,7 +44,7 @@ MastodonなどNginxのconfをいじらないと対処できない場合は後述
 Mastodonなど、ファイルを置くだけでは対処できない場合、Nginxのconfをいじらなければなりません。  
 Mastodonの場合について記述します。  
 rootで、  
-`/etc/nginx/conf.d/<site>.conf`だったり、`/etc/nginx/sites-available/<site>.conf`だったりします。とりあえず`ls /etc/nginx/conf.d`、`ls /etc/nginx/sites-available`と試してみて、それっぽいconfを見つけ出してエディタで開きます。  
+`/etc/nginx/sites-available/<site>.conf`だったり、`/etc/nginx/conf.d/<site>.conf`だったりします。とりあえず`ls /etc/nginx/sites-available`、`ls /etc/nginx/conf.d`と試してみて、それっぽいconfを見つけ出してエディタで開きます。  
 `vi`でも`vim`でも`nano`でもなんでもいいです。  
 それでもconfがなければ、`/etc/nginx/nginx.conf`か、それか全く別のところにNginxが入ってるのでしょう。  
 そして、自分のインスタンスのNginxのconfのserverのところを以下のように追記します。  
@@ -56,4 +59,7 @@ rootで、
      return 200 '{"status":"OK"}';
   }
 ```  
-そして、`systemctl restart nginx`などで、Nginxを再起動させます。
+そして、`systemctl restart nginx`などで、Nginxを再起動させます。  
+  
+Mastodon以外の場合でも、Nginxを使っているなら`server{}`内のよさげなところに上のMastodonでの例のように`location /ndstatus.json`と書いてやればOKです。  
+Apacheやその他Webサーバーでは全く設定が異なります。
