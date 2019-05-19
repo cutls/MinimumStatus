@@ -23,3 +23,9 @@ This icons are OGP icon images.
 * upload `ndstatus.json` to root of your website
 * set cron job to run `bot.php` or renamed file
 * set your server config
+
+## Make badge of your website status!
+
+Like [![check](https://status.cutls.com/badge/?site=thedesk.top)](https://status.cutls.com) 
+
+It's on `https://example.com/badge?site=<yoursite>.com`. using badgen.net
