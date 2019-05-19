@@ -24,7 +24,7 @@ This icons are OGP icon images.
 * set cron job to run `bot.php` or renamed file
 * set your server config
 
-## Make badge of your website status!
+## Make the badge of your website status!
 
 Like [![check](https://status.cutls.com/badge/?site=thedesk.top)](https://status.cutls.com) 
 
