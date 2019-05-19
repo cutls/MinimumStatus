@@ -1,5 +1,6 @@
 <?php
 //MySQL
+/*
 $databases=[
     [
         "name"=>"Database name",
