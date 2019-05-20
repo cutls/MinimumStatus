@@ -1,2 +1,2 @@
-config.php
-db.php
+dist/config.php
+dist/db.php
