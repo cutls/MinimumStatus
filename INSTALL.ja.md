@@ -25,8 +25,6 @@ $config=[
 1. MySQLの監視をしたい場合、db.phpを編集します。  
 3行目の`/* Delete this line if you use MySQL status`を行ごと削除して、設定します。(省略)
 1. セキュリティのため、bot.phpを推測されにくい名前に変更します。`bot.minami.nitta.php`など
-1. 監視される側のサイトに(例として`example.com`とします)`ndstatus.json`を置きます。そして`ndstatus.json`のアクセスを確認します(例の場合`example.com/ndstatus.json`にちゃんとアクセスできたら成功)。  
-MastodonなどNginxのconfをいじらないと対処できない場合は後述します。
 1. FTPなどでサーバーにアップロードしてください。.mdや.pngで終わるファイルはアップロード不要です。  
 1. ドメインの設定等をします。例えば、`https://status.example.com`でアクセスできるように指定します。SSL/TLSの設定なども行っておきます。
 1. cronの設定をします。cronは一定時間ごとにコマンドを実行する機能です。レンタルサーバーの場合、コントロールパネルから設定します。  
@@ -40,30 +38,6 @@ MastodonなどNginxのconfをいじらないと対処できない場合は後述
 以下のように設定します。URLは設定したドメイン+`bot.php`を変更したものを指定します。    
 ![screenshot](https://raw.githubusercontent.com/cutls/MinimumStatus/master/cron.png)  
 1. 一分程度待ったり、「今すぐ実行」をして、再読込してステータスのカウントがTotal 1/1(100%)、Today 1/1(100%)になることを確認します。
-
-## Nginxの設定(Mastodonなど)
-Mastodonなど、ファイルを置くだけでは対処できない場合、Nginxのconfをいじらなければなりません。  
-Mastodonの場合について記述します。  
-rootで、  
-`/etc/nginx/sites-available/<site>.conf`だったり、`/etc/nginx/conf.d/<site>.conf`だったりします。とりあえず`ls /etc/nginx/sites-available`、`ls /etc/nginx/conf.d`と試してみて、それっぽいconfを見つけ出してエディタで開きます。  
-`vi`でも`vim`でも`nano`でもなんでもいいです。  
-それでもconfがなければ、`/etc/nginx/nginx.conf`か、それか全く別のところにNginxが入ってるのでしょう。  
-そして、自分のインスタンスのNginxのconfのserverのところを以下のように追記します。  
-```
- ## これはもとからある
- location /sw.js {
-    add_header Cache-Control "public, max-age=0";
-    try_files $uri @proxy;
-  }
-  ## この下に以下を追記
-  location /ndstatus.json {
-     return 200 '{"status":"OK"}';
-  }
-```  
-そして、`systemctl restart nginx`などで、Nginxを再起動させます。  
-  
-Mastodon以外の場合でも、Nginxを使っているなら`server{}`内のよさげなところに上のMastodonでの例のように`location /ndstatus.json`と書いてやればOKです。  
-Apacheやその他Webサーバーでは全く設定が異なります。
 
 ## 毎日のログを見る
 

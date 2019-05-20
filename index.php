@@ -24,6 +24,10 @@ body{
     width:500px;
     max-width:100%;
 }
+textarea{
+    width: 500px;
+    max-width: 100%;
+}
 </style>
 </head>
 <body>
@@ -67,7 +71,8 @@ if($status=="OK"){
 <li class="collection-item avatar">
     <img src="<?php echo $image?>" alt="" class="circle">
     <span class="title"><?php echo $website["name"] ?></span><img src="./badge/?site=<?php echo $website["domain"] ?>" class="secondary-content">
-    <p><span class="<?php echo $color ?>-text"><?php echo $info ?></span><br>Total:<?php echo $totalup; ?>/<?php echo $total; ?>(<?php echo $pertotal ?>%)<br>
+    <p><span class="<?php echo $color ?>-text"><?php echo $info ?></span> <a href="http<?php if($website["https"]){echo "s";}else{echo "s";} ?>://<?php echo $website["domain"] ?>" target="_blank">Go this site</a>
+    <br>Total:<?php echo $totalup; ?>/<?php echo $total; ?>(<?php echo $pertotal ?>%)<br>
     Today:<?php echo $todayup?>/<?php echo $today?>(<?php echo $pertoday ?>%)<br>
     </p>
 </li>
@@ -95,7 +100,7 @@ if($status=="OK"){
 }
 ?>
 <li class="collection-item">
-    <span class="title"><?php echo $name ?></span><img src=".badge/?site=<?php echo $name ?>" class="secondary-content">
+    <span class="title"><?php echo $name ?></span><img src="./badge/?site=<?php echo $name ?>" class="secondary-content">
     <p><span class="<?php echo $color ?>-text"><?php echo $info ?></span><br>Total:<?php echo $totalup?>/<?php echo $total?>(<?php echo $pertotal ?>%)<br>
     Today:<?php echo $todayup?>/<?php echo $today?>(<?php echo $pertoday; ?>%)<br>
     </p>
@@ -103,6 +108,8 @@ if($status=="OK"){
 <?php endforeach; ?>
 </ul>
 <? endif ?>
+<h5>Error log</h5>
+<textarea><?php if(file_exists("log")){echo file_get_contents("log");} ?></textarea><br>
 &copy; <?php echo $config["copy"] ?> 2019<br>
 <b>Minimal Status</b>:<i>Legacy PHP Non-DB Status Page</i>(<a href="https://github.com/cutls/MinimumStatus" target="_blank">GitHub</a>)<br>
 &copy; <a href="https://cutls.com/@Cutls" target="_blank">Cutls P</a>

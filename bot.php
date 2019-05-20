@@ -18,23 +18,37 @@
         }else{
             $https="";
         }
-        echo "http".$https."://".$domain."/ndstatus.json";
-        $checkjson=file_get_contents("http".$https."://".$domain."/ndstatus.json");
+        $url="http".$https."://".$domain;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url); 
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        $exec =  curl_exec($ch);
+        $info = curl_getinfo($ch);
+        curl_close($ch);
+        if($info["http_code"]==200){
+            $httpStatus=true;
+        }else{
+            $httpStatus=false;
+        }
         if($data->$todaytotal){
             $data->$todaytotal=$data->$todaytotal+1;
         }else{
             $data->$todaytotal=1;
             $data->$todaysucess=0;
         }
-        if($checkjson){
-            $check=json_decode($checkjson);
-            if($check->status=="OK"){
-                $data->success=$data->success+1;
-                $data->$todaysucess=$data->$todaysucess+1;
-                $status="OK";
-            }
+        if($httpStatus){
+            $data->success=$data->success+1;
+            $data->$todaysucess=$data->$todaysucess+1;
+            $status="OK";
         }
         if($status=="OK"){
+            if($data->status!="OK"){
+                $handle = fopen('log', 'a+');
+                fwrite($handle, date("c")." Success:(".$domain.")");
+                fclose($handle);
+            }
         	$data->status="OK";
         }else{
             if($data->status!="error"){
@@ -42,6 +56,9 @@
                 if($webhook && $webhook!="" && $webhook!="Webhook URL"){
                     file_get_contents($webhook."?site=".$domain);
                 }
+                $handle = fopen('log', 'a+');
+                fwrite($handle, date("c")." Error:(".$domain.")");
+                fclose($handle);
             }
         	$data->status="error";
         }
