@@ -8,7 +8,6 @@ Legacy PHP Non-DB Status Page
 Watch your website and MySQL database status.  
 
 ![screenshot](https://raw.githubusercontent.com/cutls/MinimumStatus/master/minimal.png)  
-This icons are OGP icon images.
 
 ### Require
 
