@@ -17,7 +17,8 @@ Watch your website and MySQL database status.
 ## Usage
   
 * `git clone https://github.com/cutls/MinimumStatus.git`
-* rename `config.sample.php` to `config.php` and `db.sample.php` to `db.php` and fill configs of MinimumStatus
+* rename `dist/config.sample.php` to `config.php` and `db.sample.php` to `db.php` and fill configs of MinimumStatus
+* move `dist` to root directory of your virtual host
 * for security, you should rename `bot.php` to another name
 * set cron job to run `bot.php` or renamed file
 * set your server config
