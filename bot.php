@@ -46,7 +46,7 @@
         if($status=="OK"){
             if($data->status!="OK"){
                 $handle = fopen('log', 'a+');
-                fwrite($handle, date("c")." Success:(".$domain.")");
+                fwrite($handle, date("c")." Success:(".$domain.")\n");
                 fclose($handle);
             }
         	$data->status="OK";
@@ -57,7 +57,7 @@
                     file_get_contents($webhook."?site=".$domain);
                 }
                 $handle = fopen('log', 'a+');
-                fwrite($handle, date("c")." Error:(".$domain.")");
+                fwrite($handle, date("c")." Error:(".$domain.")\n");
                 fclose($handle);
             }
         	$data->status="error";
