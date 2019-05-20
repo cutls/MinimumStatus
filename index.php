@@ -109,8 +109,14 @@ if($status=="OK"){
 </ul>
 <? endif ?>
 <h5>Error log</h5>
-<textarea><?php if(file_exists("log")){echo file_get_contents("log");} ?></textarea><br>
+<textarea id="log"><?php if(file_exists("log")){echo file_get_contents("log");} ?></textarea><br>
 &copy; <?php echo $config["copy"] ?> 2019<br>
 <b>Minimal Status</b>:<i>Legacy PHP Non-DB Status Page</i>(<a href="https://github.com/cutls/MinimumStatus" target="_blank">GitHub</a>)<br>
 &copy; <a href="https://cutls.com/@Cutls" target="_blank">Cutls P</a>
 </div>
+<script>
+window.onload = function() {
+    var obj = document.getElementById("log");
+    obj.scrollTop = obj.scrollHeight;
+};
+</script>
