@@ -88,8 +88,18 @@ $name=$db["name"];
 $data=json_decode(file_get_contents($name.'.json'));
 $totalup=$data->success;
 $total=$data->total;
+if($total===0 || !$total){
+    $pertotal="0";
+}else{
+    $pertotal=round($totalup/$total*100,2);
+}
 $todayup=$data->$todaysucess;
 $today=$data->$todaytotal;
+if($today===0 || !$today){
+    $pertoday="0";
+}else{
+    $pertoday=round($todayup/$today*100,2);
+}
 $status=$data->status;
 if($status=="OK"){
 	$info="Operating";
