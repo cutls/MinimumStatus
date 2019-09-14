@@ -120,7 +120,7 @@ if($status=="OK"){
 </li>
 <?php endforeach; ?>
 </ul>
-<? endif ?>
+<?php endif ?>
 <h5>Error log</h5>
 <textarea id="log"><?php if(file_exists("log")){echo file_get_contents("log");} ?></textarea><br>
 &copy; <?php echo $config["copy"] ?> 2019<br>
