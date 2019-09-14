@@ -2,6 +2,9 @@
     require "config.php";
     $websites=$config["website"];
     require "db.php";
+    if(!$databases){
+        $databases = [];
+    }
     $todaytotal=date("ymd")."_total";
     $todaysucess=date("ymd")."_success";
 ?>
@@ -72,8 +75,8 @@ if($status=="OK"){
     <img src="<?php echo $image?>" alt="" class="circle">
     <span class="title"><?php echo $website["name"] ?></span><img src="./badge/?site=<?php echo $website["domain"] ?>" class="secondary-content">
     <p><span class="<?php echo $color ?>-text"><?php echo $info ?></span> <a href="http<?php if($website["https"]){echo "s";}else{echo "s";} ?>://<?php echo $website["domain"] ?>" target="_blank">Go this site</a>
-    <br>Total:<?php echo $totalup; ?>/<?php echo $total; ?>(<?php echo $pertotal ?>%)<br>
-    Today:<?php echo $todayup?>/<?php echo $today?>(<?php echo $pertoday ?>%)<br>
+    <br>Total: <?php echo $total-$totalup ?> min(s) down (<?php echo $pertotal ?>%)<br>
+    Today: <?php echo $today-$todayup ?> min(s) down (<?php echo $pertoday; ?>%)<br>
     </p>
 </li>
 <?php endforeach; ?>
@@ -111,8 +114,8 @@ if($status=="OK"){
 ?>
 <li class="collection-item">
     <span class="title"><?php echo $name ?></span><img src="./badge/?site=<?php echo $name ?>" class="secondary-content">
-    <p><span class="<?php echo $color ?>-text"><?php echo $info ?></span><br>Total:<?php echo $totalup?>/<?php echo $total?>(<?php echo $pertotal ?>%)<br>
-    Today:<?php echo $todayup?>/<?php echo $today?>(<?php echo $pertoday; ?>%)<br>
+    <p><span class="<?php echo $color ?>-text"><?php echo $info ?></span><br>Total: <?php echo $total-$totalup ?> min(s) down (<?php echo $pertotal ?>%)<br>
+    Today: <?php echo $today-$todayup ?> min(s) down (<?php echo $pertoday; ?>%)<br>
     </p>
 </li>
 <?php endforeach; ?>
