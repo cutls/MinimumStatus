@@ -1,5 +1,8 @@
 # MinimumStatus
 
+**Above this version, MySQL status was removed.**  
+**MySQLの監視は削除されました。**
+
 [日本語インストールガイド](INSTALL.ja.md)  
 Legacy PHP Non-DB Status Page
 
@@ -17,7 +20,7 @@ Watch your website and MySQL database status.
 ## Usage
   
 * `git clone https://github.com/cutls/MinimumStatus.git`
-* rename `dist/config.sample.php` to `config.php` and `db.sample.php` to `db.php` and fill configs of MinimumStatus
+* rename `dist/config.sample.php` to `config.php` and fill configs of MinimumStatus
 * move `dist` to root directory of your virtual host
 * for security, you should rename `bot.php` to another name
 * set cron job to run `bot.php` or renamed file
@@ -28,6 +31,12 @@ Watch your website and MySQL database status.
 You can get notice when your sites have something wrong.  
 `if_error` at config will be accessed when error **with** `?site=<domain>` **param once**.  
 So, fill `if_error` `https://thedesk.top/notice`, this will access like `https://thedesk.top/notice?site=cutls.com`.
+
+## Activity Log
+
+Nice activity log included.
+
+It can be filtered by website name and show how long your websites was down.
 
 ## Make the badge of your website status!
 

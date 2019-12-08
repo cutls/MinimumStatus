@@ -21,9 +21,6 @@ $config=[
     ]  
 ];  
 ```
-1. distの中のdb.config.phpの名前をdb.phpに変更します。**MySQLの監視をしない場合でも変えてください**
-1. MySQLの監視をしたい場合、db.phpを編集します。  
-3行目の`/* Delete this line if you use MySQL status`を行ごと削除して、設定します。(省略)
 1. セキュリティのため、bot.phpを推測されにくい名前に変更します。`bot.minami.nitta.php`など
 1. **distの中だけを**FTPなどでサーバーにアップロードしてください。
 1. ドメインの設定等をします。例えば、`https://status.example.com`でアクセスできるように指定します。SSL/TLSの設定なども行っておきます。
