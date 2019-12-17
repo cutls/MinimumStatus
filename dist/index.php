@@ -28,9 +28,27 @@
 body{
     padding:10px;
 }
-.collection, textarea, form, button{
+.collection, .card, textarea, form, button{
     width:500px;
     max-width:100%;
+}
+.card-favicon {
+    width: 40px;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+#cards {
+    display: flex;
+    flex-wrap: wrap;
+}
+.card {
+    margin: 10px;
+    width: 350px;
+}
+@media screen and (max-width:720px) { 
+    .card {
+    width: 100%;
+}
 }
 </style>
 </head>
@@ -39,56 +57,109 @@ body{
 <h2><?php echo $config["name"] ?> Statuses</h2>
 <?php echo $config["description"]; ?>
 <h4>Website statuses</h4>
-<ul class="collection">
+<div id="cards">
 <?php foreach($websites as $website): 
-//URLを指定  
+$date = new DateTime();
 $domain=$website["domain"];
 $image=$website["image"];
 if(file_exists($domain.'.json')){
     $data=json_decode(file_get_contents($domain.'.json'));
-}else{
-
-}
-$totalup=$data->success;
-$total=$data->total;
-$todayup=$data->$todaysucess;
-if($total===0 || !$total){
-    $pertotal="0";
-}else{
-    $pertotal=round($totalup/$total*100,2);
 }
 $today=$data->$todaytotal;
+$todayup=$data->$todaysucess;
 if($today===0 || !$today){
     $pertoday="0";
-}else{
+} else {
     $pertoday=round($todayup/$today*100,2);
 }
 $status=$data->status;
-if($status=="OK"){
+if($status=="OK") {
 	$info="Operating";
 	$color="teal";
-}else{
+} else {
 	$info="Error";
 	$color="red";
 }
+$totalWeek = 0;
+$successWeek = 0;
+$totalMonth = 0;
+$successMonth = 0;
+for ($i=0; $i < 30; $i++) {
+    $targetDay = $date->modify("-".$i." days")->format("ymd");
+    $tdTotal = $targetDay."_total";
+    $tdSuccess = $targetDay."_success";
+    if($data->$tdTotal && $data->$tdSuccess) {
+        if($i < 7): $totalWeek = $totalWeek + $data->$tdTotal; endif;
+        if($i < 7): $successWeek = $successWeek + $data->$tdSuccess; endif;
+        $totalMonth = $totalMonth + $data->$tdTotal;
+        $successMonth = $successMonth + $data->$tdSuccess;
+    } else {
+        break;
+    }
+}
+if($totalWeek ===0 || !$totalWeek){
+    $perWeek = "0";
+} else {
+    $perWeek = round($successWeek/$totalWeek*100,2);
+}
+if($totalMonth ===0 || !$totalMonth){
+    $perMonth = "0";
+} else {
+    $perMonth = round($successMonth/$totalMonth*100,2);
+}
 ?>
-<li class="collection-item avatar">
-    <img src="<?php echo $image?>" alt="" class="circle">
-    <span class="title"><?php echo $website["name"] ?></span><img src="./badge/?site=<?php echo $website["domain"] ?>" class="secondary-content">
-    <p><span class="<?php echo $color ?>-text"><?php echo $info ?></span> <a href="http<?php if($website["https"]){echo "s";}else{echo "s";} ?>://<?php echo $website["domain"] ?>" target="_blank">Go this site</a>
-    <br>Total: <?php echo $total-$totalup ?> min(s) down (<?php echo $pertotal ?>%)<br>
-    Today: <?php echo $today-$todayup ?> min(s) down (<?php echo $pertoday; ?>%)<br>
+<div class="card">
+    <img src="<?php echo $image?>" alt="" class="circle card-favicon secondary-content">
+    <div class="card-content">
+    <span class="card-title"><?php echo $website["name"] ?></span>
+    <p>
+        <span class="<?php echo $color ?>-text">
+        <?php echo $info ?>
+        </span> 
+        
     </p>
-</li>
+    <table>
+        <thead>
+          <tr>
+              <th>Period</th>
+              <th>Downtime</th>
+              <th>Availability</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>today</td>
+            <td><?php echo $today-$todayup ?>m</td>
+            <td><?php echo $pertoday; ?>%</td>
+          </tr>
+          <tr>
+            <td>7days</td>
+            <td><?php echo $totalWeek-$successWeek ?>m</td>
+            <td><?php echo $perWeek ?>%</td>
+          </tr>
+          <tr>
+            <td>30days</td>
+            <td><?php echo $totalMonth-$successMonth ?>m</td>
+            <td><?php echo $perMonth ?>%</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    <div class="card-action">
+      <a href="http<?php if($website["https"]){echo "s";}else{echo "s";} ?>://<?php echo $website["domain"] ?>" target="_blank">Go this site</a>
+    </div>
+</div>
 <?php endforeach; ?>
-</ul>
+</div>
 <?php if($arr): ?>
 <h5>Activity log</h5>
 <form action="./" method="get">
     <select name="site">
-      <option value="" selected>ALL</option>
+      <option value="" <?php if(!$_GET["site"]): ?>selected<?php endif ?>>ALL</option>
       <?php foreach($websites as $website): ?>
-      <option value="<?php echo $website["domain"] ?>"><?php echo $website["name"] ?></option>
+      <option value="<?php echo $website["domain"] ?>" <?php if($_GET["site"] == $website["domain"]): ?>selected<?php endif ?>>
+        <?php echo $website["name"] ?>
+      </option>
       <?php endforeach ?>
     </select>
     <label>Filter</label>
