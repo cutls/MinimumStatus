@@ -1,5 +1,8 @@
 # MinimumStatus
 
+## New v2 is available[v2](https://github.com/cutls/MinimumStatus/tree/v2)
+## 新しいバージョンであるv2 ができました[v2](https://github.com/cutls/MinimumStatus/tree/v2)
+
 **Above this version, MySQL status was removed.**  
 **MySQLの監視は削除されました。**
 
