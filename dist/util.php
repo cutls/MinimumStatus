@@ -1,5 +1,5 @@
 <?php
-function dataParse($data)
+function dataParse($data, $onlyToday)
 {
     $time = new DateTime();
     $thisDayCt = 0;
@@ -59,6 +59,9 @@ function dataParse($data)
                     ]
                 ]
             ]);
+            if($onlyToday) {
+                break;
+            }
         }
         if ($i == 6) {
             //7Day

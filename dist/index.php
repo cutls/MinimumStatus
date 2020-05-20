@@ -32,7 +32,7 @@ $websites = $config["website"];
                 if (file_exists('data_' . $domain . '.json')) {
                     $data = json_decode(file_get_contents('data_' . $domain . '.json'));
                 }
-                $calced = dataParse($data);
+                $calced = dataParse($data, false);
                 $status = $data->status;
                 if ($status) {
                     $info = "Operating";

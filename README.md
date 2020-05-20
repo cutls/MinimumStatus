@@ -10,7 +10,9 @@ Legacy PHP Non-DB Status Page
 
 Watch your website and MySQL database status.  
 
-![screenshot](https://raw.githubusercontent.com/cutls/MinimumStatus/master/minimal.png)  
+![screenshot](https://raw.githubusercontent.com/cutls/MinimumStatus/v2/minimal.png)  
+![graph](https://raw.githubusercontent.com/cutls/MinimumStatus/v2/graph.png)  
+This graph is provied by [QuickChart.io](https://quickchart.io/)
 
 ### Require
 
@@ -28,15 +30,10 @@ Watch your website and MySQL database status.
 
 ## Webhook when error
 
-You can get notice when your sites have something wrong.  
-`if_error` at config will be accessed when error **with** `?site=<domain>` **param once**.  
-So, fill `if_error` `https://thedesk.top/notice`, this will access like `https://thedesk.top/notice?site=cutls.com`.
-
-## Activity Log
-
-Nice activity log included.
-
-It can be filtered by website name and show how long your websites was down.
+You can get notice when your sites have something wrong and recovered.  
+`if_error` at config will be accessed when error, recovered **with** `?site=<domain>&mode=<error|success>`
+ **param twice**(When the site is down, `mode=error` and when the site is recovery, `mode=success`).  
+So, fill `if_error` `https://thedesk.top/notice`, this will access like `https://thedesk.top/notice?site=cutls.com&mode=<error|success>`.
 
 ## Make the badge of your website status!
 

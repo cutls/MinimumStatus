@@ -14,5 +14,10 @@ if ($per == 100) {
 } else {
     $color = "e05d44";
 }
+if($data->status) {
+    $status = 'operating';
+} else {
+    $status = 'error';
+}
 header("Content-Type: image/svg+xml");
-echo file_get_contents("https://flat.badgen.net/badge/up-time/" . urlencode($per . "%") . "/" . $color);
+echo file_get_contents("https://flat.badgen.net/badge/" . urlencode($website) . "/" . urlencode($status) . "/" . $color);
