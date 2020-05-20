@@ -37,6 +37,14 @@ So, fill `if_error` `https://thedesk.top/notice`, this will access like `https:/
 
 ## Make the badge of your website status!
 
+### Percentage
+
 Like [![check](https://status.cutls.com/badge/?site=thedesk.top)](https://status.cutls.com) 
 
 It's on `https://example.com/badge?site=<yoursite>.com`. using badgen.net
+
+### Operating or not
+
+Like [![check](https://status.cutls.com/badge-service/?site=thedesk.top)](https://status.cutls.com) 
+
+It's on `https://example.com/badge-service?site=<yoursite>.com`. using badgen.net
