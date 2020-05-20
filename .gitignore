@@ -1,2 +1,3 @@
 dist/config.php
 dist/db.php
+dist/*.json

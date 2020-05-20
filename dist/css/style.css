@@ -1,0 +1,41 @@
+body {
+    padding: 10px;
+}
+
+.collection,
+.card,
+textarea {
+    width: 500px;
+    max-width: 100%;
+}
+
+.card-favicon {
+    width: 40px;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+#cards {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    margin: 10px;
+    width: 350px;
+}
+
+@media screen and (max-width:720px) {
+    .card {
+        width: 100%;
+    }
+}
+
+#graphView {
+    max-width: 100%;
+}
+
+details {
+    max-height: 300px;
+    overflow-y: scroll;
+}
