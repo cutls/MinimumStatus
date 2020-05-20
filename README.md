@@ -1,14 +1,20 @@
 # MinimumStatus
 
-**Above this version, MySQL status was removed.**  
-**MySQLの監視は削除されました。**
+## What's new(v2)
+**Update from v1, you cannot continue to view v1 log and downtime(it has no compatibility)**  
+**v1からアップデートすると、v1のログやダウンタイム情報は使えなくなります。**
 
+* Webhook can post you Error/Recovery events.(v1: only Error event)
+* Load time graph is available
+* New compact log viewer
+
+[日本語概要](README.ja.md)  
 [日本語インストールガイド](INSTALL.ja.md)  
 Legacy PHP Non-DB Status Page
 
 ## What's this
 
-Watch your website and MySQL database status.  
+Watch your website status.  
 
 ![screenshot](https://raw.githubusercontent.com/cutls/MinimumStatus/v2/minimal.png)  
 ![graph](https://raw.githubusercontent.com/cutls/MinimumStatus/v2/graph.png)  
@@ -37,7 +43,7 @@ So, fill `if_error` `https://thedesk.top/notice`, this will access like `https:/
 
 ## Make the badge of your website status!
 
-### Percentage
+### Availability
 
 Like [![check](https://status.cutls.com/badge/?site=thedesk.top)](https://status.cutls.com) 
 

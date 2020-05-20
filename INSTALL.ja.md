@@ -1,6 +1,6 @@
 # MinimumStatus日本語インストールガイド
 
-![screenshot](https://raw.githubusercontent.com/cutls/MinimumStatus/master/minimal.png)  
+![screenshot](https://raw.githubusercontent.com/cutls/MinimumStatus/master/minimal.png)  s
 
 ## Gitとかが使えないレンタルサーバーに設置する編
 
@@ -58,7 +58,7 @@ URLをコピーします。
 ```
 <?php
     $website=$_GET["site"];
-    discord('https://discordapp.com/api/webhooks/xxxxxxxxxxx',[content=>'Error('.$website.')']);
+    discord('https://discordapp.com/api/webhooks/xxxxxxxxxxx',[content=>$_GET['mode'].'('.$website.')']);
     function discord($url, $data)
 {
     $options = array(
@@ -84,4 +84,4 @@ URLをコピーします。
 外からアクセスできるところに保存します。  
 `config.php`の`if_error`のところに、そこにアクセスするためのURLまたは相対パスを記入します。  
 以上です。  
-エラー発生時のみ`Error(watchingsite.com)`のようなメッセージが送られます。
+エラー発生時は`error(watchingsite.com)`、回復時は`susuccess(ww.com)`のようなメッセージが送られます。
