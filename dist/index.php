@@ -71,19 +71,19 @@ $websites = $config["website"];
                                     <td>today</td>
                                     <td><?php echo $calced[0]['disable'] ?>m</td>
                                     <td><?php echo $calced[0]['per']; ?>%</td>
-                                    <td><button class="btn waves-effect graph" data-href="https://quickchart.io/chart?bkg=white&c=<?php echo urlencode($calced[4]) ?>">View</button></td>
+                                    <td><button class="btn waves-effect graph" data-json="<?php echo base64_encode($calced[4]) ?>">View</button></td>
                                 </tr>
                                 <tr>
                                     <td>7days</td>
                                     <td><?php echo $calced[1]['disable'] ?>m</td>
                                     <td><?php echo $calced[1]['per'] ?>%</td>
-                                    <td><button class="btn waves-effect graph" data-href="https://quickchart.io/chart?bkg=white&c=<?php echo urlencode($calced[4]) ?>">View</button></td>
+                                    <td><button class="btn waves-effect graph" data-json="<?php echo base64_encode($calced[5]) ?>">View</button></td>
                                 </tr>
                                 <tr>
                                     <td>30days</td>
                                     <td><?php echo $calced[2]['disable'] ?>m</td>
                                     <td><?php echo $calced[2]['per'] ?>%</td>
-                                    <td><button class="btn waves-effect graph" data-href="https://quickchart.io/chart?bkg=white&c=<?php echo urlencode($calced[4]) ?>">View</button></td>
+                                    <td><button class="btn waves-effect graph" data-json="<?php echo base64_encode($calced[6]) ?>">View</button></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -101,16 +101,19 @@ $websites = $config["website"];
                 </div>
             <?php endforeach; ?>
         </div>
-        <img id="graphView">
+        <a name="graph"></a>
+        <canvas id="graphView"></canvas>
         &copy; <?php echo $config["copy"] ?> 2019<br>
         <b>Minimal Status</b>:<i>Legacy PHP Non-DB Status Page</i>(<a href="https://github.com/cutls/MinimumStatus" target="_blank">GitHub</a> v2)
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script>
         var elements = document.getElementsByClassName("graph");
         for (var i = 0; i < elements.length; i++) {
             elements[i].onclick = function() {
-                var data = this.getAttribute('data-href');
-                document.getElementById('graphView').setAttribute('src', data);
+                var json = this.getAttribute('data-json');
+                var ctx = document.getElementById('graphView').getContext('2d');
+                var chart = new Chart(ctx, JSON.parse(atob(json)));
             }
         }
     </script>
