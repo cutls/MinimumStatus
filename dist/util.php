@@ -44,14 +44,21 @@ function dataParse($data, $onlyToday)
         if ($i == 0) {
             //Today
             $today = ['all' => $thisDayCt, 'disable' => $disable, 'per' => round(($thisDayCt - $disable) / $thisDayCt * 100, 2)];
+             //Today
+             for ($one = 0; $one < count($graph); $one++) {
+                if ($one % 5 == 0) {
+                    $todayLabels[] = $labels[$one];
+                    $todayGraph[] = $graph[$one];
+                }
+            }
             $todayGraphData = json_encode([
                 'type' => 'line',
                 'data' => [
-                    'labels' => $labels,
+                    'labels' => $todayLabels,
                     'datasets' => [
                         [
-                            'label' => 'Load(sec)',
-                            'data' => $graph,
+                            'label' => 'Load(sec) thin outed to 1/5',
+                            'data' => $todayGraph,
                             'fill' => false,
                             'borderColor' => 'blue',
                             'borderWidth' => 1
@@ -66,9 +73,9 @@ function dataParse($data, $onlyToday)
         if ($i == 6) {
             //7Day
             $week = ['all' => $thisDayCt,  'disable' => $disable, 'per' => round(($thisDayCt - $disable) / $thisDayCt * 100, 2)];
-            //Third
+            //Ten
             for ($half = 0; $half < count($graph); $half++) {
-                if ($half % 3 == 0) {
+                if ($half % 50 == 0) {
                     $weekLabels[] = $labels[$half];
                     $weekGraph[] = $graph[$half];
                 }
@@ -79,7 +86,7 @@ function dataParse($data, $onlyToday)
                     'labels' => $weekLabels,
                     'datasets' => [
                         [
-                            'label' => 'Load(sec) thin outed to 1/3',
+                            'label' => 'Load(sec) thin outed to 1/50',
                             'data' => $weekGraph,
                             'fill' => false,
                             'borderColor' => 'blue',
@@ -94,7 +101,7 @@ function dataParse($data, $onlyToday)
             $month = ['all' => $thisDayCt,  'disable' => $disable, 'per' => round(($thisDayCt - $disable) / $thisDayCt * 100, 2)];
             //Ten
             for ($ten = 0; $ten < count($graph); $ten++) {
-                if ($ten % 10 == 0) {
+                if ($ten % 150 == 0) {
                     $monthLabels[] = $labels[$ten];
                     $monthGraph[] = $graph[$ten];
                 }
@@ -105,7 +112,7 @@ function dataParse($data, $onlyToday)
                     'labels' => $monthLabels,
                     'datasets' => [
                         [
-                            'label' => 'Load(sec) thin outed to 1/10',
+                            'label' => 'Load(sec) thin outed to 1/150',
                             'data' => $monthGraph,
                             'fill' => false,
                             'borderColor' => 'blue',
