@@ -102,7 +102,9 @@ $websites = $config["website"];
             <?php endforeach; ?>
         </div>
         <a name="graph"></a>
-        <canvas id="graphView"></canvas>
+        <div id="graphWrap">
+            <canvas id="graphView"></canvas>
+        </div>
         &copy; <?php echo $config["copy"] ?> 2019<br>
         <b>Minimal Status</b>:<i>Legacy PHP Non-DB Status Page</i>(<a href="https://github.com/cutls/MinimumStatus" target="_blank">GitHub</a> v2)
     </div>
@@ -112,7 +114,10 @@ $websites = $config["website"];
         for (var i = 0; i < elements.length; i++) {
             elements[i].onclick = function() {
                 var json = this.getAttribute('data-json');
-                var ctx = document.getElementById('graphView').getContext('2d');
+                document.getElementById('graphWrap').innerHTML = `<canvas id="graphView"></canvas>`;
+                var canvas = document.getElementById('graphView');
+                var ctx = canvas.getContext('2d');
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
                 var chart = new Chart(ctx, JSON.parse(atob(json)));
             }
         }
