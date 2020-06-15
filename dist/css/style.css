@@ -39,3 +39,9 @@ details {
     max-height: 300px;
     overflow-y: scroll;
 }
+
+.notice {
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+}

@@ -1,6 +1,6 @@
 <?php
 require "config.php";
-ini_set( 'display_errors', 0);
+ini_set('display_errors', 0);
 require "util.php";
 $websites = $config["website"];
 ?>
@@ -46,6 +46,10 @@ $websites = $config["website"];
                 } else {
                     $go = 'http://' . $website["domain"];
                 }
+                $notice = '';
+                if (file_exists('info_' . $domain . '.html')) {
+                    $notice = file_get_contents('info_' . $domain . '.html');
+                }
             ?>
                 <div class="card">
                     <img src="<?php echo $image ?>" alt="" class="circle card-favicon secondary-content">
@@ -55,8 +59,12 @@ $websites = $config["website"];
                             <span class="<?php echo $color ?>-text">
                                 <?php echo $info ?>
                             </span>
-
                         </p>
+                        <?php if ($notice) : ?>
+                            <div class="notice orange white-text">
+                                <?php echo $notice ?>
+                            </div>
+                        <?php endif; ?>
                         <table>
                             <thead>
                                 <tr>
@@ -90,7 +98,7 @@ $websites = $config["website"];
                         <details>
                             <summary>Log</summary>
                             <u>Downtime list</u>(max 30 days)<br />
-                            <?php foreach($calced[3] as $log): ?>
+                            <?php foreach ($calced[3] as $log) : ?>
                                 <?php echo date('Y-m-d H:i', strtotime($log['start'])) ?>~<?php echo date('Y-m-d H:i', strtotime($log['end'])) ?><br />
                             <?php endforeach ?>
                         </details>
@@ -117,7 +125,6 @@ $websites = $config["website"];
                 document.getElementById('graphWrap').innerHTML = `<canvas id="graphView"></canvas>`;
                 var canvas = document.getElementById('graphView');
                 var ctx = canvas.getContext('2d');
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
                 var chart = new Chart(ctx, JSON.parse(atob(json)));
             }
         }

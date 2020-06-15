@@ -18,7 +18,6 @@ Watch your website status.
 
 ![screenshot](https://raw.githubusercontent.com/cutls/MinimumStatus/v2/minimal.png)  
 ![graph](https://raw.githubusercontent.com/cutls/MinimumStatus/v2/graph.png)  
-This graph is provied by [QuickChart.io](https://quickchart.io/)
 
 ### Require
 
@@ -33,6 +32,11 @@ This graph is provied by [QuickChart.io](https://quickchart.io/)
 * for security, you should rename `bot.php` to another name
 * set cron job to run `bot.php` or renamed file
 * set your server config
+
+## Notice of the site
+
+Write HTML in `info_<domain>.html`  
+![notice](https://raw.githubusercontent.com/cutls/MinimumStatus/v2/notice.png)  
 
 ## Webhook when error
 

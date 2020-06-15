@@ -18,7 +18,6 @@ Legacy PHP Non-DB Status Page
 
 ![screenshot](https://raw.githubusercontent.com/cutls/MinimumStatus/v2/minimal.png)  
 ![graph](https://raw.githubusercontent.com/cutls/MinimumStatus/v2/graph.png)  
-[QuickChart.io](https://quickchart.io/)でグラフを描画します
 
 ### 要件
 
@@ -28,6 +27,11 @@ Legacy PHP Non-DB Status Page
 ## Usage
   
 [日本語インストールガイド](INSTALL.ja.md)  
+
+## サイトからのお知らせ
+
+`info_<domain>.html`にHTMLを書いてください。
+![notice](https://raw.githubusercontent.com/cutls/MinimumStatus/v2/notice.png)  
 
 ## Webhook when error
 
@@ -49,3 +53,4 @@ URL: `https://example.com/badge?site=<yoursite>.com` badgen.net使用
 例 [![check](https://status.cutls.com/badge-service/?site=thedesk.top)](https://status.cutls.com) 
 
 URL: `https://example.com/badge-service?site=<yoursite>.com` badgen.net使用
+
