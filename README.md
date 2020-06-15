@@ -37,6 +37,7 @@ Watch your website status.
 
 Write HTML in `info_<domain>.html`  
 ![notice](https://raw.githubusercontent.com/cutls/MinimumStatus/v2/notice.png)  
+(info_cutls.com.html)
 
 ## Webhook when error
 

@@ -32,6 +32,7 @@ Legacy PHP Non-DB Status Page
 
 `info_<domain>.html`にHTMLを書いてください。
 ![notice](https://raw.githubusercontent.com/cutls/MinimumStatus/v2/notice.png)  
+(info_cutls.com.html)
 
 ## Webhook when error
 
